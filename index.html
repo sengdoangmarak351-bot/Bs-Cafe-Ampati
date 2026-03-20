@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BS Cafe — Ampati, Meghalaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+<style>
+:root{--white:#ffffff;--off-white:#f9f8f5;--grey-light:#f0eeea;--grey-mid:#c8c4bc;--grey-dark:#6b6560;--black:#151312;--orange:#e07b39;--orange-light:#f4a261;--orange-glow:rgba(224,123,57,0.18);--teal:#1a7a6e;--green:#2d6a4f;--gold:#c9a84c;--dark-bg:#0f1a18;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--off-white);}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:10px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:16px 5%;background:rgba(255,255,255,0.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06);}
+.nav-logo{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--black);text-decoration:none;}
+.nav-logo span{color:var(--orange);}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--grey-dark);font-size:0.83rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange)!important;color:white!important;padding:10px 20px!important;border-radius:50px!important;font-weight:600!important;}
+.nav-cta:hover{background:var(--black)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{width:24px;height:2px;background:var(--black);border-radius:2px;display:block;}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--grey-light);z-index:998;flex-direction:column;gap:16px;}
+.mobile-menu a{text-decoration:none;color:var(--black);font-size:1rem;font-weight:500;padding:8px 0;border-bottom:1px solid var(--grey-light);}
+.mobile-menu.open{display:flex;}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--dark-bg);}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a1614 0%,#1a2e2a 50%,#0d1e1c 100%);}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(26,122,110,0.3) 0%,transparent 55%),radial-gradient(ellipse at 15% 70%,rgba(224,123,57,0.2) 0%,transparent 45%);}
+.floating-stars{position:absolute;inset:0;overflow:hidden;}
+.fstar{position:absolute;color:rgba(255,255,255,0.4);font-size:16px;animation:floatStar 4s ease-in-out infinite;}
+@keyframes floatStar{0%,100%{opacity:0.15;transform:translateY(0) scale(1);}50%{opacity:0.55;transform:translateY(-8px) scale(1.1);}}
+.hero-content{position:relative;z-index:2;padding:130px 5% 80px;max-width:660px;animation:fadeUp 0.9s ease forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);padding:6px 16px;border-radius:50px;color:var(--orange-light);font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:22px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,6.5rem);font-weight:900;line-height:0.95;color:var(--white);margin-bottom:10px;}
+.hero h1 em{color:var(--orange);font-style:italic;}
+.hero-tagline{font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--teal);margin-bottom:18px;}
+.hero p.hero-desc{color:rgba(255,255,255,0.55);font-size:1rem;line-height:1.75;max-width:460px;margin-bottom:38px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-orange{background:var(--orange);color:white;padding:14px 28px;border-radius:50px;font-weight:600;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 28px rgba(224,123,57,0.4);transition:all 0.3s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-orange:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(224,123,57,0.55);background:#d06b28;}
+.btn-ghost{border:1.5px solid rgba(255,255,255,0.25);color:white;padding:14px 28px;border-radius:50px;font-weight:500;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.06);transition:all 0.3s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.13);transform:translateY(-2px);}
+.hero-img{position:absolute;right:0;top:0;bottom:0;width:46%;overflow:hidden;}
+.hero-img::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,var(--dark-bg) 0%,rgba(10,22,20,0.4) 35%,transparent 60%);}
+.hero-img img{width:100%;height:100%;object-fit:cover;opacity:0.65;filter:saturate(0.75) brightness(0.8);}
+.hero-stats{position:absolute;bottom:48px;left:5%;display:flex;gap:40px;z-index:2;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--orange-light);}
+.stat-label{font-size:0.72rem;color:rgba(255,255,255,0.4);letter-spacing:0.1em;text-transform:uppercase;}
+
+/* SECTIONS */
+section{padding:88px 5%;}
+.section-tag{display:inline-flex;align-items:center;gap:10px;color:var(--orange);font-size:0.74rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:12px;}
+.section-tag::before{content:'';width:22px;height:2px;background:var(--orange);border-radius:2px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:12px;}
+.section-subtitle{color:var(--grey-dark);font-size:0.97rem;line-height:1.7;max-width:500px;}
+
+/* FEATURES STRIP */
+.feat-strip{background:var(--black);padding:36px 5%;display:flex;gap:0;}
+.feat-item{flex:1;display:flex;align-items:center;gap:14px;padding:0 24px;border-right:1px solid rgba(255,255,255,0.08);color:white;}
+.feat-item:last-child{border-right:none;}
+.feat-icon{font-size:1.7rem;flex-shrink:0;}
+.feat-text strong{display:block;font-size:0.9rem;font-weight:600;margin-bottom:2px;}
+.feat-text span{font-size:0.77rem;color:rgba(255,255,255,0.42);}
+
+/* MENU */
+.menu-section{background:var(--off-white);}
+.menu-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 36px;}
+.tab-btn{padding:9px 18px;border-radius:50px;border:1.5px solid var(--grey-mid);background:transparent;cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--grey-dark);font-family:'DM Sans',sans-serif;transition:all 0.22s;}
+.tab-btn.active,.tab-btn:hover{background:var(--orange);border-color:var(--orange);color:white;}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.menu-card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:all 0.3s;display:none;flex-direction:column;}
+.menu-card.active{display:flex;}
+.menu-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12);}
+.menu-card-img{height:160px;background:linear-gradient(135deg,#1a2e2a,#2d4a3e);display:flex;align-items:center;justify-content:center;font-size:3.8rem;position:relative;}
+.menu-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.25),transparent);}
+.menu-badge{position:absolute;top:10px;right:10px;z-index:1;background:var(--orange);color:white;padding:3px 10px;border-radius:50px;font-size:0.68rem;font-weight:700;}
+.menu-card-body{padding:16px;flex:1;display:flex;flex-direction:column;}
+.menu-card-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:4px;}
+.menu-card-desc{font-size:0.8rem;color:var(--grey-dark);line-height:1.5;flex:1;margin-bottom:14px;}
+.menu-card-footer{display:flex;align-items:center;justify-content:space-between;}
+.menu-price{font-size:1rem;font-weight:700;color:var(--orange);}
+.add-btn{background:var(--black);color:white;border:none;padding:8px 16px;border-radius:50px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.add-btn:hover{background:var(--orange);}
+
+/* ORDER */
+.order-section{background:white;}
+.order-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.order-form-card{background:var(--off-white);border-radius:24px;padding:38px;border:1px solid var(--grey-light);}
+.form-title{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;margin-bottom:6px;}
+.form-subtitle{color:var(--grey-dark);font-size:0.85rem;margin-bottom:26px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--grey-dark);margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 15px;border:1.5px solid var(--grey-light);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.9rem;background:white;color:var(--black);outline:none;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--orange);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cart-summary{background:var(--black);border-radius:24px;padding:34px;color:white;position:sticky;top:90px;}
+.cart-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin-bottom:5px;}
+.cart-sub{color:rgba(255,255,255,0.4);font-size:0.82rem;margin-bottom:22px;}
+.cart-empty{color:rgba(255,255,255,0.3);font-size:0.86rem;text-align:center;padding:36px 0;}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.cart-item-name{font-size:0.88rem;color:rgba(255,255,255,0.82);}
+.cart-item-price{color:var(--orange-light);font-weight:600;font-size:0.88rem;}
+.cart-item-rm{background:none;border:none;color:rgba(255,255,255,0.25);cursor:pointer;font-size:0.9rem;margin-left:8px;transition:color 0.2s;}
+.cart-item-rm:hover{color:#ff6b6b;}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);}
+.cart-total-label{font-size:0.82rem;color:rgba(255,255,255,0.45);}
+.cart-total-amount{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--orange-light);font-weight:700;}
+.order-note{background:rgba(255,255,255,0.05);border-radius:10px;padding:13px;margin-top:14px;font-size:0.78rem;color:rgba(255,255,255,0.38);line-height:1.6;}
+
+/* RESERVATION */
+.res-section{background:var(--dark-bg);color:white;position:relative;overflow:hidden;}
+.res-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(26,122,110,0.2) 0%,transparent 60%);}
+.res-section .section-title{color:white;}
+.res-section .section-subtitle{color:rgba(255,255,255,0.45);}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;position:relative;z-index:1;}
+.res-form-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:38px;backdrop-filter:blur(12px);}
+.res-form-card .form-group input,.res-form-card .form-group select{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:white;}
+.res-form-card .form-group input::placeholder{color:rgba(255,255,255,0.28);}
+.res-form-card .form-group input:focus,.res-form-card .form-group select:focus{border-color:var(--orange);}
+.res-form-card .form-group label{color:rgba(255,255,255,0.5);}
+.res-form-card select option{background:var(--dark-bg);}
+.res-info{display:flex;flex-direction:column;gap:20px;}
+.res-info-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:22px;display:flex;gap:16px;align-items:flex-start;}
+.res-icon{font-size:1.5rem;flex-shrink:0;}
+.res-info-card h4{font-size:0.88rem;font-weight:600;color:white;margin-bottom:4px;}
+.res-info-card p{font-size:0.82rem;color:rgba(255,255,255,0.42);line-height:1.6;}
+
+/* LOCATION */
+.loc-section{background:var(--off-white);}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+.map-wrap{border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.12);height:420px;}
+.map-wrap iframe{width:100%;height:100%;border:none;}
+.loc-details{display:flex;flex-direction:column;gap:20px;}
+.loc-card{background:white;border-radius:16px;padding:22px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:transform 0.2s;}
+.loc-card:hover{transform:translateY(-2px);}
+.loc-icon{width:42px;height:42px;border-radius:12px;background:var(--orange-glow);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
+.loc-card h4{font-size:0.84rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--grey-dark);margin-bottom:4px;}
+.loc-card p{font-size:0.93rem;color:var(--black);line-height:1.6;}
+.dir-btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;padding:13px 26px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.88rem;transition:all 0.3s;box-shadow:0 6px 20px var(--orange-glow);}
+.dir-btn:hover{background:var(--black);transform:translateY(-2px);}
+
+/* ABOUT */
+.about-section{background:white;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:66px;align-items:center;}
+.about-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.about-img{border-radius:16px;overflow:hidden;}
+.about-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;}
+.about-img:hover img{transform:scale(1.04);}
+.about-img.tall{grid-row:span 2;}
+.about-img.tall img{height:360px;}
+.about-img.short img{height:168px;}
+.about-text p{color:var(--grey-dark);font-size:0.95rem;line-height:1.8;margin-bottom:14px;}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+.hl-item{background:var(--off-white);border-radius:12px;padding:15px;border-left:3px solid var(--orange);}
+.hl-item strong{font-size:0.83rem;font-weight:700;display:block;margin-bottom:2px;}
+.hl-item span{font-size:0.77rem;color:var(--grey-dark);}
+
+/* GALLERY */
+.gallery-section{background:var(--off-white);}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px;}
+.gallery-item{border-radius:14px;overflow:hidden;aspect-ratio:1;background:linear-gradient(135deg,#1a2e2a,#2d4a3e);display:flex;align-items:center;justify-content:center;font-size:5rem;cursor:pointer;transition:transform 0.3s;}
+.gallery-item:hover{transform:scale(0.97);}
+.gallery-item img{width:100%;height:100%;object-fit:cover;}
+
+/* TESTIMONIALS */
+.testimonials-section{background:var(--black);color:white;}
+.testimonials-section .section-title{color:white;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px;}
+.testi-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:26px;transition:transform 0.3s;}
+.testi-card:hover{transform:translateY(-4px);}
+.stars{color:var(--gold);font-size:0.88rem;margin-bottom:13px;letter-spacing:2px;}
+.testi-text{color:rgba(255,255,255,0.62);font-size:0.9rem;line-height:1.75;margin-bottom:18px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.author-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--teal));display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:0.82rem;}
+.author-name{font-weight:600;font-size:0.86rem;color:white;}
+.author-tag{font-size:0.73rem;color:rgba(255,255,255,0.32);}
+
+/* FOOTER */
+footer{background:var(--black);color:rgba(255,255,255,0.45);border-top:1px solid rgba(255,255,255,0.06);padding:56px 5% 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:44px;}
+.footer-brand .nav-logo{font-size:2.1rem;display:block;text-decoration:none;margin-bottom:12px;}
+.footer-brand p{font-size:0.83rem;line-height:1.7;max-width:270px;}
+.footer-col h5{color:white;font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-col ul li a{color:rgba(255,255,255,0.42);text-decoration:none;font-size:0.83rem;transition:color 0.2s;}
+.footer-col ul li a:hover{color:var(--orange);}
+.footer-col p{font-size:0.83rem;line-height:1.8;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.76rem;flex-wrap:wrap;gap:8px;}
+.footer-bottom .hl{color:var(--orange-light);}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:var(--black);color:white;padding:13px 20px;border-radius:12px;font-size:0.86rem;font-weight:500;border-left:3px solid var(--orange);box-shadow:0 8px 30px rgba(0,0,0,0.25);transform:translateY(80px);opacity:0;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;backdrop-filter:blur(4px);align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:white;border-radius:24px;padding:44px;max-width:400px;width:90%;text-align:center;animation:popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes popIn{from{transform:scale(0.7);opacity:0;}to{transform:scale(1);opacity:1;}}
+.modal-icon{font-size:3.2rem;margin-bottom:14px;}
+.modal-box h3{font-family:'Playfair Display',serif;font-size:1.55rem;margin-bottom:8px;}
+.modal-box p{color:var(--grey-dark);font-size:0.9rem;line-height:1.65;margin-bottom:26px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-img{display:none;}
+  .hero-content{max-width:100%;}
+  .order-wrapper,.res-grid,.loc-grid,.about-grid{grid-template-columns:1fr;}
+  .feat-strip{flex-wrap:wrap;}
+  .feat-item{flex:0 0 50%;border-bottom:1px solid rgba(255,255,255,0.08);padding:18px;}
+  .testi-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .cart-summary{position:static;}
+  .hero-stats{flex-wrap:wrap;gap:20px;}
+}
+@media(max-width:600px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  section{padding:60px 5%;}
+  .feat-strip{flex-direction:column;}
+  .feat-item{flex:1;border-right:none;}
+  .about-imgs{grid-template-columns:1fr;}
+  .about-img.tall{grid-row:auto;}
+  .about-img.tall img,.about-img.short img{height:200px;}
+  .form-row{grid-template-columns:1fr;}
+  .highlights{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">BS<span>Cafe</span></a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#reservation">Reserve</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#order" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#order" onclick="toggleMenu()">Order Online</a>
+  <a href="#reservation" onclick="toggleMenu()">Reservation</a>
+  <a href="#location" onclick="toggleMenu()">Location</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="floating-stars" id="starsContainer"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Now Open in Ampati, Meghalaya</div>
+    <h1>BS<br/><em>Cafe</em></h1>
+    <p class="hero-tagline">Where Every Bite Tells a Story</p>
+    <p class="hero-desc">Experience authentic Garo traditional flavours, freshly made momos, sizzling snacks & refreshing drinks — right in the heart of Ampati.</p>
+    <div class="hero-btns">
+      <a href="#order" class="btn-orange">🍽️ Order Now</a>
+      <a href="#menu" class="btn-ghost">📖 View Menu</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="cafe2.jpg" alt="BS Cafe at night"/>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">50+</div><div class="stat-label">Menu Items</div></div>
+    <div><div class="stat-num">4.8★</div><div class="stat-label">Rating</div></div>
+    <div><div class="stat-num">500+</div><div class="stat-label">Happy Guests</div></div>
+  </div>
+</section>
+
+<!-- FEATURES STRIP -->
+<div class="feat-strip">
+  <div class="feat-item"><div class="feat-icon">🛵</div><div class="feat-text"><strong>Fast Delivery</strong><span>Fresh to your door</span></div></div>
+  <div class="feat-item"><div class="feat-icon">📅</div><div class="feat-text"><strong>Easy Reservations</strong><span>Book your table online</span></div></div>
+  <div class="feat-item"><div class="feat-icon">🍲</div><div class="feat-text"><strong>Garo Traditional</strong><span>Authentic local flavours</span></div></div>
+  <div class="feat-item"><div class="feat-icon">📍</div><div class="feat-text"><strong>Near Rural Bank</strong><span>Ampati, Meghalaya 794115</span></div></div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="section-tag">Our Menu</div>
+  <h2 class="section-title">Fresh & Delicious Every Day</h2>
+  <div class="menu-tabs" id="menuTabs">
+    <button class="tab-btn active" onclick="filterMenu('all',this)">All Items</button>
+    <button class="tab-btn" onclick="filterMenu('snacks',this)">Snacks</button>
+    <button class="tab-btn" onclick="filterMenu('momos',this)">Momos</button>
+    <button class="tab-btn" onclick="filterMenu('chow',this)">Chow</button>
+    <button class="tab-btn" onclick="filterMenu('rice',this)">Rice</button>
+    <button class="tab-btn" onclick="filterMenu('garo',this)">Garo Traditional</button>
+    <button class="tab-btn" onclick="filterMenu('indian',this)">Indian & Chinese</button>
+    <button class="tab-btn" onclick="filterMenu('beverages',this)">Beverages</button>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<!-- ORDER -->
+<section class="order-section" id="order">
+  <div class="order-wrapper">
+    <div>
+      <div class="section-tag">Order Online</div>
+      <h2 class="section-title">Order Fresh Food<br/>To Your Door</h2>
+      <p class="section-subtitle" style="margin-bottom:32px;">Add items from the menu above, fill your details below and we'll call to confirm your order.</p>
+      <div class="order-form-card">
+        <div class="form-title">Place Your Order</div>
+        <div class="form-subtitle">Our team will call within 10 minutes to confirm</div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" id="orderName" placeholder="Full name"/></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" id="orderPhone" placeholder="+91 XXXXX XXXXX"/></div>
+        </div>
+        <div class="form-group"><label>Delivery Address</label><input type="text" id="orderAddress" placeholder="Your address in Ampati"/></div>
+        <div class="form-group"><label>Order Type</label>
+          <select id="orderType">
+            <option value="delivery">🛵 Home Delivery</option>
+            <option value="pickup">🏃 Pickup from Cafe</option>
+            <option value="dine">🍽️ Dine In</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Special Instructions</label><textarea id="orderNotes" rows="2" placeholder="e.g. extra spicy, no onion..." style="resize:none;"></textarea></div>
+        <button class="btn-orange" style="width:100%;justify-content:center;font-size:1rem;padding:15px;" onclick="submitOrder()">Confirm Order 🎉</button>
+      </div>
+    </div>
+    <div class="cart-summary" id="cartSummary">
+      <div class="cart-title">Your Cart 🛒</div>
+      <div class="cart-sub">Items selected from the menu</div>
+      <div id="cartItems"><div class="cart-empty">No items yet. Add from the menu above! 👆</div></div>
+      <div class="cart-total">
+        <div class="cart-total-label">Total Amount</div>
+        <div class="cart-total-amount" id="cartTotal">Rs. 0</div>
+      </div>
+      <div class="order-note">📞 We'll call you within 10 mins to confirm. Delivery within Ampati only.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="res-section" id="reservation">
+  <div class="res-grid">
+    <div>
+      <div class="section-tag" style="color:var(--orange-light);">Table Booking</div>
+      <h2 class="section-title">Reserve Your Table Today</h2>
+      <p class="section-subtitle" style="margin-bottom:32px;">Plan your visit in advance and we'll have the perfect table ready for you.</p>
+      <div class="res-form-card">
+        <div class="form-group"><label>Full Name</label><input type="text" id="resName" placeholder="Your name"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone</label><input type="tel" id="resPhone" placeholder="+91 XXXXX XXXXX"/></div>
+          <div class="form-group"><label>Guests</label>
+            <select id="resGuests">
+              <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+              <option>4 Guests</option><option>5–6 Guests</option><option>7–10 Guests</option><option>10+ Guests</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Date</label><input type="date" id="resDate"/></div>
+          <div class="form-group"><label>Time</label>
+            <select id="resTime">
+              <option>9:00 AM</option><option>10:00 AM</option><option>11:00 AM</option>
+              <option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option>
+              <option>3:00 PM</option><option>4:00 PM</option><option>5:00 PM</option>
+              <option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Special Request (Optional)</label><input type="text" id="resNote" placeholder="e.g. Birthday, outdoor seating..."/></div>
+        <button class="btn-orange" style="width:100%;justify-content:center;font-size:1rem;padding:15px;" onclick="submitReservation()">Book My Table 📅</button>
+      </div>
+    </div>
+    <div class="res-info">
+      <div class="res-info-card"><div class="res-icon">🕐</div><div><h4>Opening Hours</h4><p>Monday – Saturday: 8:00 AM – 10:00 PM<br/>Sunday: 9:00 AM – 9:00 PM</p></div></div>
+      <div class="res-info-card"><div class="res-icon">📍</div><div><h4>Our Location</h4><p>Near Rural Bank, Ampati<br/>Meghalaya – 794115, India</p></div></div>
+      <div class="res-info-card"><div class="res-icon">📞</div><div><h4>Call to Reserve</h4><p>Prefer calling? Reach us directly and we'll arrange everything for your visit.</p></div></div>
+      <div class="res-info-card"><div class="res-icon">🎉</div><div><h4>Private Events</h4><p>Birthdays, family gatherings & special occasions. Contact us for special packages.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="loc-section" id="location">
+  <div class="section-tag">Find Us</div>
+  <h2 class="section-title" style="margin-bottom:38px;">We're Easy to Find</h2>
+  <div class="loc-grid">
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3649.3!2d90.67396!3d25.51816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37514f6f1f58b591%3A0x8a3dd5c6c3ff4e74!2sBS%20Cafe!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BS Cafe Location Ampati">
+      </iframe>
+    </div>
+    <div class="loc-details">
+      <div class="loc-card"><div class="loc-icon">📍</div><div><h4>Address</h4><p>Near Rural Bank, Āmpati<br/>Meghalaya – 794115, India</p></div></div>
+      <div class="loc-card"><div class="loc-icon">🕐</div><div><h4>Opening Hours</h4><p>Mon–Sat: 8:00 AM – 10:00 PM<br/>Sunday: 9:00 AM – 9:00 PM</p></div></div>
+      <div class="loc-card"><div class="loc-icon">🚗</div><div><h4>How to Get Here</h4><p>Located near the Rural Bank in central Ampati. Easily reachable by auto, bike or on foot from the main market area.</p></div></div>
+      <a href="https://maps.google.com/?q=BS+Cafe+near+Rural+Bank+Ampati+Meghalaya+794115" target="_blank" class="dir-btn">📍 Get Directions on Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-grid">
+    <div class="about-imgs">
+      <div class="about-img tall"><img src="cafe2.jpg" alt="BS Cafe exterior"/></div>
+      <div class="about-img short"><img src="cafe1.jpg" alt="BS Cafe ambiance"/></div>
+      <div class="about-img short" style="background:linear-gradient(135deg,#1a7a6e,#0f3330);display:flex;align-items:center;justify-content:center;font-size:4.5rem;">🍜</div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">More Than Just a Cafe</h2>
+      <p>BS Cafe is Ampati's beloved spot for great food, a warm atmosphere, and genuine hospitality. Nestled near the Rural Bank in the heart of town, we serve the community with love-crafted dishes blending local Garo flavours with popular Indian & Chinese favourites.</p>
+      <p>From star momos and crispy snacks to authentic Garo Traditional curry and refreshing beverages — everything is freshly prepared daily with quality ingredients and care.</p>
+      <div class="highlights">
+        <div class="hl-item"><strong>🌿 Fresh Daily</strong><span>All food prepared fresh every day</span></div>
+        <div class="hl-item"><strong>🏡 Local Flavours</strong><span>Authentic Garo traditional recipes</span></div>
+        <div class="hl-item"><strong>😊 Friendly Staff</strong><span>Warm & welcoming always</span></div>
+        <div class="hl-item"><strong>🌙 Evening Ambiance</strong><span>Beautiful outdoor seating at night</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="section-tag">Gallery</div>
+  <h2 class="section-title">A Peek Inside BS Cafe</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="cafe1.jpg" alt="BS Cafe night"/></div>
+    <div class="gallery-item"><img src="cafe2.jpg" alt="BS Cafe entrance"/></div>
+    <div class="gallery-item" style="font-size:5rem;">🥟</div>
+    <div class="gallery-item" style="font-size:5rem;">🍜</div>
+    <div class="gallery-item" style="font-size:5rem;">🍗</div>
+    <div class="gallery-item" style="font-size:5rem;">☕</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="section-tag" style="color:var(--orange-light);">Reviews</div>
+  <h2 class="section-title">What People Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"Best momos in Ampati! The Chicken Schezwan Momos are absolutely amazing. Love the cozy evening atmosphere with those star lights outside."</p><div class="testi-author"><div class="author-av">RK</div><div><div class="author-name">Rakesh K.</div><div class="author-tag">Regular Customer</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><p class="testi-text">"The Garo Traditional Chicken Kappa is something else! Tastes just like home cooking. Great place to bring family. Staff are very friendly and welcoming."</p><div class="testi-author"><div class="author-av">PM</div><div><div class="author-name">Priya M.</div><div class="author-tag">Food Lover</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★☆</div><p class="testi-text">"Came with friends for the first time and we were blown away. Pork Crispy and Chilli Chicken are must-try dishes. Will definitely be back soon!"</p><div class="testi-author"><div class="author-av">AS</div><div><div class="author-name">Amit S.</div><div class="author-tag">Local Explorer</div></div></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo">BS<span>Cafe</span></a>
+      <p>Your favourite local cafe in Ampati, Meghalaya. Serving authentic Garo flavours and modern bites with warmth and love.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#menu">Our Menu</a></li>
+        <li><a href="#order">Order Online</a></li>
+        <li><a href="#reservation">Reserve Table</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Visit Us</h5>
+      <p>Near Rural Bank<br/>Āmpati, Meghalaya<br/>794115, India<br/><br/>Mon–Sat: 8AM – 10PM<br/>Sunday: 9AM – 9PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 BS Cafe Ampati. All rights reserved.</span>
+    <span>Made with ❤️ for <span class="hl">BS Cafe</span></span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-icon" id="modalIcon">🎉</div>
+    <h3 id="modalTitle">Done!</h3>
+    <p id="modalMsg">Thank you!</p>
+    <button class="btn-orange" style="margin:0 auto;" onclick="closeModal()">Done ✓</button>
+  </div>
+</div>
+
+<script>
+// FLOATING STARS
+const sc = document.getElementById('starsContainer');
+[[8,20],[15,60],[22,85],[30,15],[40,70],[50,35],[60,90],[70,10],[78,55],[85,30],[92,75],[5,45],[95,50],[35,95],[55,5]].forEach(([l,t],i)=>{
+  const s=document.createElement('div');s.className='fstar';s.textContent='★';
+  s.style.cssText=`left:${l}%;top:${t}%;animation-delay:${i*0.28}s;font-size:${13+Math.random()*12}px;`;
+  sc.appendChild(s);
+});
+
+// MENU DATA
+const menuItems=[
+  {cat:'snacks',name:'French Fries',price:150,emoji:'🍟',desc:'Crispy golden fries, perfectly seasoned',badge:'Popular'},
+  {cat:'snacks',name:'Chicken Chop',price:70,emoji:'🍗',desc:'Tender chicken chop, lightly spiced'},
+  {cat:'snacks',name:'Pork Chop',price:80,emoji:'🥩',desc:'Juicy pork chop with seasoning'},
+  {cat:'snacks',name:'Chicken Crispy',price:300,emoji:'🍗',desc:'Crispy fried chicken, golden & juicy',badge:"Chef's Pick"},
+  {cat:'snacks',name:'Pork Crispy',price:300,emoji:'🥓',desc:'Crispy pork with special seasoning'},
+  {cat:'snacks',name:'Slice Pork',price:400,emoji:'🍖',desc:'Perfectly sliced & cooked pork'},
+  {cat:'snacks',name:'Chilli Chicken Crispy',price:400,emoji:'🌶️',desc:'Fiery crispy chicken with chilli sauce',badge:'Spicy'},
+  {cat:'snacks',name:'Veg Pakora',price:90,emoji:'🌿',desc:'Mixed vegetable fritters, crispy outside'},
+  {cat:'snacks',name:'Chicken Pakora',price:150,emoji:'🍘',desc:'Juicy chicken in gram flour batter'},
+  {cat:'snacks',name:'Onion Rings',price:300,emoji:'🧅',desc:'Golden crispy onion rings with dip'},
+  {cat:'snacks',name:'Chicken Momo (Steam)',price:110,emoji:'🥟',desc:'Classic steamed chicken dumplings',badge:'Best Seller'},
+  {cat:'snacks',name:'Pork Momo',price:110,emoji:'🥟',desc:'Traditional steamed pork momos'},
+
+  {cat:'momos',name:'Chicken Momos Steam',price:90,emoji:'🥟',desc:'Classic steamed chicken dumplings',badge:'Popular'},
+  {cat:'momos',name:'Chicken Momos Fried',price:130,emoji:'🥟',desc:'Pan-fried chicken momos, crispy shell'},
+  {cat:'momos',name:'Chicken Schezwan Momos Fried',price:150,emoji:'🌶️',desc:'Spicy schezwan chicken dumplings',badge:'Spicy'},
+  {cat:'momos',name:'Pork Momos',price:100,emoji:'🥟',desc:'Traditional pork steamed momos'},
+  {cat:'momos',name:'Pork Momos Fried',price:130,emoji:'🥟',desc:'Fried pork momos, golden & crispy'},
+  {cat:'momos',name:'Pork Schezwan Momos Fried',price:150,emoji:'🌶️',desc:'Spicy fried pork momos',badge:'Spicy'},
+  {cat:'momos',name:'Fried Chicken Momo',price:130,emoji:'🥟',desc:'Classic fried chicken momos'},
+
+  {cat:'chow',name:'Veg Chow',price:90,emoji:'🍜',desc:'Stir-fried noodles with fresh vegetables'},
+  {cat:'chow',name:'Chicken Chow',price:110,emoji:'🍜',desc:'Noodles tossed with tender chicken',badge:'Popular'},
+  {cat:'chow',name:'Chicken Schezwan Chow',price:130,emoji:'🌶️',desc:'Spicy schezwan noodles with chicken',badge:'Spicy'},
+  {cat:'chow',name:'Pork Chow',price:110,emoji:'🍜',desc:'Stir-fried noodles with pork'},
+  {cat:'chow',name:'Pork Spicy Chow',price:130,emoji:'🌶️',desc:'Fiery spicy pork noodles'},
+  {cat:'chow',name:'Chicken Mushroom Chow',price:150,emoji:'🍄',desc:'Noodles with chicken & mushroom'},
+  {cat:'chow',name:'Mix Chow',price:170,emoji:'🍜',desc:'Mixed meat & veg noodle bowl',badge:"Chef's Pick"},
+
+  {cat:'rice',name:'Basmati Rice',price:100,emoji:'🍚',desc:'Fragrant steamed basmati rice'},
+  {cat:'rice',name:'Veg Fried Rice',price:90,emoji:'🍳',desc:'Wok-tossed rice with fresh vegetables'},
+  {cat:'rice',name:'Chicken Fried Rice',price:150,emoji:'🍳',desc:'Wok-tossed rice with chicken & eggs',badge:'Popular'},
+  {cat:'rice',name:'Pork Fried Rice',price:160,emoji:'🍳',desc:'Smoky wok-fried rice with pork'},
+  {cat:'rice',name:'Chicken Schezwan Fried Rice',price:160,emoji:'🌶️',desc:'Spicy schezwan fried rice',badge:'Spicy'},
+  {cat:'rice',name:'Mixed Fried Rice',price:170,emoji:'🍳',desc:'Premium mixed meat fried rice'},
+  {cat:'rice',name:'Chicken Biryani',price:400,emoji:'🍛',desc:'Aromatic biryani with tender chicken',badge:'Special'},
+
+  {cat:'garo',name:'Chicken Kappa',price:320,emoji:'🫕',desc:'Traditional Garo chicken in rich gravy',badge:'Traditional'},
+  {cat:'garo',name:'Chicken Pura',price:400,emoji:'🍗',desc:'Whole chicken prepared Garo style',badge:'Traditional'},
+  {cat:'garo',name:'Pork Kappa',price:320,emoji:'🫕',desc:'Traditional Garo pork curry',badge:'Traditional'},
+  {cat:'garo',name:'Pork Pura',price:400,emoji:'🥩',desc:'Whole pork Garo traditional preparation',badge:'Traditional'},
+
+  {cat:'indian',name:'Chilli Chicken Boneless Gravy',price:400,emoji:'🌶️',desc:'Boneless chicken in fiery chilli sauce',badge:'Spicy'},
+  {cat:'indian',name:'Chilli Chicken Dry',price:300,emoji:'🌶️',desc:'Dry style crispy chilli chicken'},
+  {cat:'indian',name:'Chicken Curry',price:400,emoji:'🍛',desc:'Rich homestyle chicken curry'},
+  {cat:'indian',name:'Butter Chicken',price:400,emoji:'🧈',desc:'Creamy tomato butter chicken',badge:'Popular'},
+  {cat:'indian',name:'Chilli Pork with Mushroom',price:450,emoji:'🍄',desc:'Pork & mushroom in chilli sauce'},
+  {cat:'indian',name:'Matar Paneer',price:350,emoji:'🧀',desc:'Cottage cheese with green peas'},
+  {cat:'indian',name:'Dal Makhani',price:120,emoji:'🫘',desc:'Slow-cooked creamy black lentils'},
+
+  {cat:'beverages',name:'Black Tea',price:20,emoji:'🍵',desc:'Classic hot black tea'},
+  {cat:'beverages',name:'Milk Tea',price:50,emoji:'🧋',desc:'Creamy hot milk tea'},
+  {cat:'beverages',name:'Milk Coffee',price:80,emoji:'☕',desc:'Freshly brewed milk coffee',badge:'Popular'},
+  {cat:'beverages',name:'Lemon Tea',price:60,emoji:'🍋',desc:'Refreshing hot lemon tea'},
+  {cat:'beverages',name:'Mango Shake',price:130,emoji:'🥭',desc:'Thick creamy mango milkshake'},
+  {cat:'beverages',name:'Banana Shake',price:130,emoji:'🍌',desc:'Smooth banana milkshake'},
+  {cat:'beverages',name:'Oreo Shake',price:120,emoji:'🍪',desc:'Creamy Oreo cookies milkshake',badge:'Favourite'},
+  {cat:'beverages',name:'Lemon Juice',price:120,emoji:'🍋',desc:'Fresh squeezed lemon juice'},
+  {cat:'beverages',name:'Pomegranate Juice',price:130,emoji:'🍎',desc:'Fresh pomegranate juice'},
+  {cat:'beverages',name:'Apple Juice',price:130,emoji:'🍏',desc:'Chilled fresh apple juice'},
+  {cat:'beverages',name:'Cold Drinks',price:90,emoji:'🥤',desc:'Chilled soft drinks assorted'},
+  {cat:'beverages',name:'Mineral Water',price:10,emoji:'💧',desc:'Packaged mineral water'},
+];
+
+// CART
+let cart=[];
+
+function renderMenu(filter='all'){
+  const grid=document.getElementById('menuGrid');
+  grid.innerHTML='';
+  const items=filter==='all'?menuItems:menuItems.filter(i=>i.cat===filter);
+  items.forEach(item=>{
+    const card=document.createElement('div');
+    card.className='menu-card active';
+    card.innerHTML=`<div class="menu-card-img"><span style="z-index:2;position:relative">${item.emoji}</span>${item.badge?`<div class="menu-badge">${item.badge}</div>`:''}</div>
+    <div class="menu-card-body"><div class="menu-card-name">${item.name}</div><div class="menu-card-desc">${item.desc}</div>
+    <div class="menu-card-footer"><div class="menu-price">Rs. ${item.price}/-</div><button class="add-btn" onclick="addToCart('${item.name.replace(/'/g,"\\'")}',${item.price})">+ Add</button></div></div>`;
+    grid.appendChild(card);
+  });
+}
+
+function filterMenu(cat,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(cat);
+}
+
+function addToCart(name,price){
+  const ex=cart.find(i=>i.name===name);
+  if(ex){ex.qty++;ex.total+=price;}
+  else{cart.push({name,price,qty:1,total:price});}
+  renderCart();
+  showToast(`✅ ${name} added!`);
+}
+
+function removeFromCart(idx){
+  cart.splice(idx,1);
+  renderCart();
+}
+
+function renderCart(){
+  const container=document.getElementById('cartItems');
+  const totalEl=document.getElementById('cartTotal');
+  if(!cart.length){container.innerHTML='<div class="cart-empty">No items yet. Add from the menu above! 👆</div>';totalEl.textContent='Rs. 0';return;}
+  container.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div class="cart-item-name">${item.qty}x ${item.name}</div><div style="display:flex;align-items:center;gap:4px;"><div class="cart-item-price">Rs. ${item.total}</div><button class="cart-item-rm" onclick="removeFromCart(${i})">✕</button></div></div>`).join('');
+  totalEl.textContent='Rs. '+cart.reduce((s,i)=>s+i.total,0);
+}
+
+function submitOrder(){
+  const name=document.getElementById('orderName').value.trim();
+  const phone=document.getElementById('orderPhone').value.trim();
+  if(!name||!phone){showToast('⚠️ Please enter your name and phone');return;}
+  if(!cart.length){showToast('⚠️ Add items to your cart first');return;}
+  showModal('🎉','Order Placed!',`Thank you, ${name}! Your order is received. We'll call ${phone} within 10 minutes to confirm. 🍽️`);
+  cart=[];renderCart();
+  ['orderName','orderPhone','orderAddress','orderNotes'].forEach(id=>document.getElementById(id).value='');
+}
+
+function submitReservation(){
+  const name=document.getElementById('resName').value.trim();
+  const phone=document.getElementById('resPhone').value.trim();
+  const date=document.getElementById('resDate').value;
+  if(!name||!phone||!date){showToast('⚠️ Please fill all required fields');return;}
+  const guests=document.getElementById('resGuests').value;
+  const time=document.getElementById('resTime').value;
+  showModal('📅','Table Reserved!',`Thank you, ${name}! Your table for ${guests} on ${new Date(date+' 00:00').toDateString()} at ${time} is confirmed. See you soon! 😊`);
+  ['resName','resPhone','resDate','resNote'].forEach(id=>document.getElementById(id).value='');
+}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function showModal(icon,title,msg){document.getElementById('modalIcon').textContent=icon;document.getElementById('modalTitle').textContent=title;document.getElementById('modalMsg').textContent=msg;document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+document.getElementById('resDate').min=new Date().toISOString().split('T')[0];
+renderMenu('all');
+</script>
+</body>
+</html>
